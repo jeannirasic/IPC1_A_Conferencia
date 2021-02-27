@@ -38,19 +38,33 @@ ng serve
 La estructura básica de un proyecto de Angular es la siquiente:
 
 ├── e2e/
+
 ├── node_modules/
+
 ├── src/
+
 │   ├── app/
+
 │   │   ├── app.component.css
+
 │   │   ├── app.component.html
+
 │   │   ├── app.component.spec.ts
+
 │   │   ├── app.component.ts
+
 │   │   ├── app.module.ts
+
 │   ├── assets/
+
 │   ├── environments/
+
 │   ├── favicon.ico
+
 │   ├── index.html
+
 │   ├── main.ts
+
 │   ├── style.css
 
 #### Comandos importantes
