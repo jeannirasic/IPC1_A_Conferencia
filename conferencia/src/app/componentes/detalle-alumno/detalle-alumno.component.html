@@ -1,0 +1,61 @@
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" href="#">DTT</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" routerLink="/perfil-alumno">Mi perfil</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/cursos-alumno">Mis cursos</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="page blog-post-list">
+    <section class="clean-block clean-blog-list dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Actividades {{arregloCursos[indiceCurso].Codigo}} - {{arregloCursos[indiceCurso].Nombre}}</h2>
+                <p>Visualice los detalles de las actividades del curso</p>
+            </div>
+            <div class="block-content">
+                <div class="clean-blog-post" *ngFor="let item of arregloActividades; let i = index;">
+                    <div class="row">
+                        <div class="col-lg-5"><img class="rounded img-fluid" src="/assets/img/tech/Clase.jpg?h=4ad0ce2239e720c52b1203599a16b87b"></div>
+                        <div class="col-lg-7">
+                            <h3>{{item.Nombre}}</h3>
+                            <div class="info"><span class="text-primary">Ponderación:&nbsp;</span><span class="text-muted">{{item.Ponderacion}}</span></div>
+                            <div class="info"><span class="text-primary">Nota obtenida:</span><span class="text-muted">{{item.Promedio}}</span></div>
+                            <div class="info"><span class="text-primary">Descripción:</span><span class="text-muted">{{item.Descripcion}}</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Total ponderación</th>
+                                <th class="text-center">Total nota obtenida</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">{{totalPonderacion}}</td>
+                                <td class="text-center">{{totalNotaObtenida}}</td>
+                            </tr>
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</main><!-- Start: Footer Dark -->
+<footer class="page-footer dark" style="background: rgb(34,36,37);">
+    <div class="footer-copyright" style="background: rgb(34, 36, 37);">
+        <p>© 2021 DTT ECYS</p>
+    </div>
+</footer><!-- End: Footer Dark -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script src="/assets/js/script.min.js?h=01b328a5753bdfc81655b662cb370c91"></script>

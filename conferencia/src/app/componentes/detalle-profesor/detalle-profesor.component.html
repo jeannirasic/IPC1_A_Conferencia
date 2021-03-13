@@ -1,0 +1,108 @@
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" href="#">DTT</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" routerLink="/perfil-profesor">Mi perfil</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/cursos-profesor">Mis cursos</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="page shopping-cart-page">
+    <section class="clean-block clean-cart dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">{{arregloCursos[indiceCurso].Codigo}} - {{arregloCursos[indiceCurso].Nombre}}</h2>
+                <p>Seleccione una opción para visualizar o modificar</p>
+            </div>
+            <div>
+                <mat-tab-group animationDuration="0ms">
+                    <mat-tab label="Alumnos">
+                        <div class="content">
+                            <div class="row no-gutters">
+                                <div class="col-md-12 col-lg-8">
+                                    <div class="items">
+                                        <div class="product" *ngFor="let item of arregloAlumnos; let i = index;">
+                                            <div class="row justify-content-center align-items-center">
+                                                <div class="col-md-3">
+                                                    <div class="product-image"><img class="img-fluid d-block mx-auto image" src="/assets/img/tech/alumno.png?h=d8c4b1e03a731906f8783b974832b2af"></div>
+                                                </div>
+                                                <div class="col-md-5 product-info">
+                                                    <h4>Alumno {{item.Codigo}}</h4>
+                                                    <div class="product-specs">
+                                                        <div><span>Nombre:&nbsp;</span><span class="value">{{item.Nombre}}</span></div>
+                                                        <div><span>Apellido:&nbsp;</span><span class="value">{{item.Apellido}}</span></div>
+                                                        <div><span>Correo:&nbsp;</span><span class="value">{{item.Correo}}</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-2 quantity"><button class="btn btn-success btn-sm border rounded-pill" type="button" (click)="seleccionarAlumno(item, i)">Seleccionar</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-4">
+                                    <div class="summary">
+                                        <h3>Alumno</h3>
+                                        <h4><span class="text">Nombre</span><span class="price">{{alumnoSeleccionado.Nombre}}</span></h4>
+                                        <h4><span class="text">Apellido</span><span class="price">{{alumnoSeleccionado.Apellido}}</span></h4>
+                                        <h4><span class="text">Correo</span><span class="price">{{alumnoSeleccionado.Correo}}</span></h4>
+                                        <h4><span class="text">Género</span><span class="price">{{alumnoSeleccionado.Genero}}</span></h4><button class="btn btn-danger btn-block btn-sm border rounded-pill" type="button" (click)="eliminarAlumno()">Eliminar alumno</button>
+                                        <hr>
+                                        <h4><span class="text">Carga masiva alumnos<input type="file"></span></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Actividades">
+                        <div class="content">
+                            <div class="row no-gutters">
+                                <div class="col-md-12 col-lg-8">
+                                    <div class="items">
+                                        <div class="product" *ngFor="let item of arregloActividades; let i = index;">
+                                            <div class="row justify-content-center align-items-center">
+                                                <div class="col-md-3">
+                                                    <div class="product-image"><img class="img-fluid d-block mx-auto image" src="/assets/img/tech/tarea.png?h=1060f64f91f7e1c43449317164207418"></div>
+                                                </div>
+                                                <div class="col-md-5 product-info">
+                                                    <h4>Actividad {{i+1}}</h4>
+                                                    <div class="product-specs">
+                                                        <div><span>Nombre:&nbsp;</span><span class="value">{{item.Nombre}}</span></div>
+                                                        <div><span>Ponderación:&nbsp;</span><span class="value">{{item.Ponderacion}}</span></div>
+                                                        <div><span>Promedio:&nbsp;</span><span class="value">{{item.Promedio}}</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-md-2 quantity"><button class="btn btn-danger btn-sm border rounded-pill" type="button" (click)="eliminarActividad(i)">Eliminar</button></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-4">
+                                    <div class="text-center summary">
+                                        <h3>Actividad</h3>
+                                        <h4><span class="text"><input class="border rounded-pill form-control-lg" type="text" name="nombre" placeholder="Nombre" [(ngModel)]="actividadNueva.Nombre"></span></h4>
+                                        <h4><span class="text"><input class="border rounded-pill form-control-lg" type="text" name="descripcion" placeholder="Descripción" [(ngModel)]="actividadNueva.Descripcion"></span></h4>
+                                        <h4><span class="text"><input class="border rounded-pill form-control-lg" type="text" name="ponderacion" placeholder="Ponderación" [(ngModel)]="actividadNueva.Ponderacion"></span></h4>
+                                        <h4><span class="text">Carga masiva notas<input type="file"></span></h4><button class="btn btn-success btn-block btn-sm border rounded-pill" type="button" (click)="crearActividad()">Crear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group>
+
+            </div>
+        </div>
+    </section>
+</main><!-- Start: Footer Dark -->
+<footer class="page-footer dark" style="background: rgb(34,36,37);">
+    <div class="footer-copyright" style="background: rgb(34, 36, 37);">
+        <p>© 2021 DTT ECYS</p>
+    </div>
+</footer><!-- End: Footer Dark -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script src="/assets/js/script.min.js?h=01b328a5753bdfc81655b662cb370c91"></script>

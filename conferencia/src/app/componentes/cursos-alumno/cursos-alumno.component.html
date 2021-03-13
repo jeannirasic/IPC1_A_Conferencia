@@ -1,0 +1,51 @@
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" href="#">DTT</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" routerLink="/perfil-alumno">Mi perfil</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/cursos-alumno">Mis cursos</a></li>
+                <li class="nav-item"><a class="nav-link" routerLink="/">Cerrar sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="page catalog-page">
+    <section class="clean-block clean-catalog dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Cursos asignados</h2>
+                <p>Seleccione el curso que desea visualizar</p>
+            </div>
+            <div class="content">
+                <div class="products">
+                    <div class="row no-gutters">
+                        <div class="col-12 col-md-6 col-lg-4" *ngFor="let item of arregloCursos; let i = index;">
+                            <div class="clean-product-item">
+                                <div class="image"><img class="img-fluid d-block mx-auto" src="/assets/img/tech/curso.png?h=1c35f2cf150a2a9402d2eba39bc38e9d"></div>
+                                <div class="product-name">
+                                    <h5>{{item.Nombre}}</h5>
+                                </div>
+                                <div class="about">
+                                    <div class="rating">
+                                        <h6>{{item.Profesor}}</h6>
+                                    </div>
+                                    <div class="price"><button class="btn btn-success btn-sm border rounded-pill" type="button" (click)="verCurso(item, i)">Ver curso</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main><!-- Start: Footer Dark -->
+<footer class="page-footer dark" style="background: rgb(34,36,37);">
+    <div class="footer-copyright" style="background: rgb(34, 36, 37);">
+        <p>© 2021 DTT ECYS</p>
+    </div>
+</footer><!-- End: Footer Dark -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script src="/assets/js/script.min.js?h=01b328a5753bdfc81655b662cb370c91"></script>

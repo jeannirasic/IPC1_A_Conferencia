@@ -1,0 +1,216 @@
+<nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+    <div class="container"><a class="navbar-brand logo" href="#">DTT</a><button data-toggle="collapse"
+            class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" routerLink="/">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main class="page shopping-cart-page">
+    <section class="clean-block clean-cart dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Bienvenido administrador</h2>
+                <p>Seleccione una opción para iniciar</p>
+            </div>
+            <mat-tab-group animationDuration="0ms">
+                <mat-tab label="Profesores">
+                    <div class="content">
+                        <div class="row no-gutters">
+                            <div class="col-md-12 col-lg-8">
+                                <div class="items">
+                                    <div class="product" *ngFor="let item of arregloProfesores; let i = index">
+                                        <div class="row justify-content-center align-items-center">
+                                            <div class="col-md-3">
+                                                <div class="product-image"><img class="img-fluid d-block mx-auto image"
+                                                        src="/assets/img/tech/Profesor.png?h=0344a7b02088784e30148da4bfac9414">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 product-info">
+                                                <h4>Profesor {{item.Codigo}}</h4>
+                                                <div class="product-specs">
+                                                    <div><span>Nombre:&nbsp;</span><span class="value">{{item.Nombre}}</span></div>
+                                                    <div><span>Apellido:&nbsp;</span><span class="value">{{item.Apellido}}</span>
+                                                    </div>
+                                                    <div><span>Correo:&nbsp;</span><span
+                                                            class="value">{{item.Correo}}</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-2 quantity"><button
+                                                    class="btn btn-success btn-sm border rounded-pill"
+                                                    type="button" (click)="seleccionarProfesor(item, i)">Seleccionar</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-4">
+                                <div class="text-center summary">
+                                    <h3>Profesor</h3>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="text" data-toggle="tooltip" data-bss-tooltip="" name="codigo"
+                                                placeholder="Código" [(ngModel)]="profesorSeleccionado.Codigo"></span></h4>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="text" name="nombre" placeholder="Nombre" [(ngModel)]="profesorSeleccionado.Nombre"></span></h4>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="text" name="apellido" placeholder="Apellido" [(ngModel)]="profesorSeleccionado.Apellido"></span></h4>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="email" placeholder="Correo" name="correo" [(ngModel)]="profesorSeleccionado.Correo"></span></h4>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="password" name="clave" placeholder="Clave" [(ngModel)]="profesorSeleccionado.Clave"></span></h4>
+                                    <h4><span class="text"><select class="border rounded-pill custom-select"
+                                                name="genero" style="text-align: center;" [(ngModel)]="profesorSeleccionado.Genero">
+                                                <option value="Femenino">Femenino</option>
+                                                <option value="Masculino">Masculino</option>
+                                            </select></span></h4><button
+                                        class="btn btn-success btn-sm border rounded-pill"
+                                        type="button" (click)="crearProfesor()">&nbsp;Crear&nbsp;</button><button
+                                        class="btn btn-warning btn-sm border rounded-pill"
+                                        type="button" (click)="actualizarProfesor()">&nbsp;Actualizar&nbsp;</button><button
+                                        class="btn btn-danger btn-sm border rounded-pill"
+                                        type="button" (click)="eliminarProfesor()">&nbsp;Eliminar&nbsp;</button><button
+                                        class="btn btn-primary btn-block btn-sm border rounded-pill"
+                                        type="button" (click)="limpiarProfesor()">Quitar selección</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Cursos">
+                    <div class="content">
+                        <div class="row no-gutters">
+                            <div class="col-md-12 col-lg-8">
+                                <div class="items">
+                                    <div class="product" *ngFor="let item of arregloCursos; let i = index;">
+                                        <div class="row justify-content-center align-items-center">
+                                            <div class="col-md-3">
+                                                <div class="product-image"><img class="img-fluid d-block mx-auto image"
+                                                        src="/assets/img/tech/curso.png?h=1c35f2cf150a2a9402d2eba39bc38e9d">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 product-info">
+                                                <h4>Curso {{item.Codigo}}</h4>
+                                                <div class="product-specs">
+                                                    <div><span>Nombre:&nbsp;</span><span class="value">{{item.Nombre}}</span></div>
+                                                    <div><span>Créditos:&nbsp;</span><span class="value">{{item.Creditos}}</span></div>
+                                                    <div><span>Alumnos:&nbsp;</span><span class="value">{{item.Alumnos}}</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-2 quantity"><button
+                                                    class="btn btn-success btn-sm border rounded-pill"
+                                                    type="button" (click)="seleccionarCurso(item, i)">Seleccionar</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-4">
+                                <div class="text-center summary">
+                                    <h3>Curso</h3>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="text" data-toggle="tooltip" data-bss-tooltip="" name="codigo"
+                                                placeholder="Código" [(ngModel)]="cursoSeleccionado.Codigo"></span></h4>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="text" name="nombre" placeholder="Nombre" [(ngModel)]="cursoSeleccionado.Nombre"></span></h4>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="text" name="creditos" placeholder="Créditos" [(ngModel)]="cursoSeleccionado.Creditos"></span></h4>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="email" placeholder="Alumnos" name="alumnos" [(ngModel)]="cursoSeleccionado.Alumnos"></span></h4>
+                                    <h4><span class="text"><select class="border rounded-pill custom-select"
+                                                name="genero" style="text-align: center;" [(ngModel)]="cursoSeleccionado.Profesor">
+                                                
+                                                <option value="Juan Pérez">Juan Pérez</option>
+                                                <option value="María López">María López</option>
+                                                <option value="Jorge Martínez">Jorge Martínez</option>
+                                                <option value="Sara Fuentes">Sara Fuentes</option>
+                                            </select></span></h4><button
+                                        class="btn btn-success btn-sm border rounded-pill"
+                                        type="button" (click)="crearCurso()">&nbsp;Crear&nbsp;</button><button
+                                        class="btn btn-warning btn-sm border rounded-pill"
+                                        type="button" (click)="actualizarCurso()">&nbsp;Actualizar&nbsp;</button><button
+                                        class="btn btn-danger btn-sm border rounded-pill"
+                                        type="button" (click)="eliminarCurso()">&nbsp;Eliminar&nbsp;</button><button
+                                        class="btn btn-primary btn-block btn-sm border rounded-pill"
+                                        type="button" (click)="limpiarCurso()">Quitar selección</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Alumnos">
+                    <div class="content">
+                        <div class="row no-gutters">
+                            <div class="col-md-12 col-lg-8">
+                                <div class="items">
+                                    <div class="product" *ngFor="let item of arregloAlumnos; let i = index;">
+                                        <div class="row justify-content-center align-items-center">
+                                            <div class="col-md-3">
+                                                <div class="product-image"><img class="img-fluid d-block mx-auto image"
+                                                        src="/assets/img/tech/alumno.png?h=d8c4b1e03a731906f8783b974832b2af">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 product-info">
+                                                <h4>Alumno {{item.Codigo}}</h4>
+                                                <div class="product-specs">
+                                                    <div><span>Nombre:&nbsp;</span><span class="value">{{item.Nombre}}</span></div>
+                                                    <div><span>Apellido:&nbsp;</span><span class="value">{{item.Apellido}}</span>
+                                                    </div>
+                                                    <div><span>Correo:&nbsp;</span><span
+                                                            class="value">{{item.Correo}}</span></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-2 quantity"><button
+                                                    class="btn btn-success btn-sm border rounded-pill"
+                                                    type="button" (click)="seleccionarAlumno(item, i)">Seleccionar</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-4">
+                                <div class="text-center summary">
+                                    <h3>Alumno</h3>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="text" data-toggle="tooltip" data-bss-tooltip="" name="codigo"
+                                                placeholder="Código" [(ngModel)]="alumnoSeleccionado.Codigo"></span></h4>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="text" name="nombre" placeholder="Nombre" [(ngModel)]="alumnoSeleccionado.Nombre"></span></h4>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="text" name="apellido" placeholder="Apellido" [(ngModel)]="alumnoSeleccionado.Apellido"></span></h4>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="email" placeholder="Correo" name="correo" [(ngModel)]="alumnoSeleccionado.Correo"></span></h4>
+                                    <h4><span class="text"><input class="border rounded-pill form-control-lg"
+                                                type="password" name="clave" placeholder="Clave" [(ngModel)]="alumnoSeleccionado.Clave"></span></h4>
+                                    <h4><span class="text"><select class="border rounded-pill custom-select"
+                                                name="genero" style="text-align: center;" [(ngModel)]="alumnoSeleccionado.Genero">
+                                                
+                                                <option value="Femenino">Femenino</option>
+                                                <option value="Masculino">Masculino</option>
+                                            </select></span></h4><button
+                                        class="btn btn-success btn-sm border rounded-pill"
+                                        type="button" (click)="crearAlumno()">&nbsp;Crear&nbsp;</button><button
+                                        class="btn btn-warning btn-sm border rounded-pill"
+                                        type="button" (click)="actualizarAlumno()">&nbsp;Actualizar&nbsp;</button><button
+                                        class="btn btn-danger btn-sm border rounded-pill"
+                                        type="button" (click)="eliminarAlumno()">&nbsp;Eliminar&nbsp;</button><button
+                                        class="btn btn-primary btn-block btn-sm border rounded-pill"
+                                        type="button">Quitar selección</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </section>
+</main><!-- Start: Footer Dark -->
+<footer class="page-footer dark" style="background: rgb(34,36,37);">
+    <div class="footer-copyright" style="background: rgb(34, 36, 37);">
+        <p>© 2021 DTT ECYS</p>
+    </div>
+</footer><!-- End: Footer Dark -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script src="/assets/js/script.min.js?h=01b328a5753bdfc81655b662cb370c91"></script>
